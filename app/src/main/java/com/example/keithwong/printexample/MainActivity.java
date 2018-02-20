@@ -5,9 +5,13 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.clover.sdk.util.CloverAccount;
 import com.clover.sdk.v1.printer.*;
@@ -77,6 +81,64 @@ public class MainActivity extends AppCompatActivity implements ServiceConnector.
         LayoutInflater inflater = LayoutInflater.from(this);
         inflater.inflate(R.layout.print_template, vg, true);
         receipt = findViewById(R.id.receipt);
+        buildReceipt();
+    }
+
+    protected void buildReceipt() {
+        //Use LinearLayout to add on views to the receipt
+        LinearLayout receiptTree = (LinearLayout) findViewById(R.id.receipt);
+
+        //Use TextViews to add on custom text
+        TextView heading = new TextView(this);
+        heading.setText("Example Merchant");
+        heading.setGravity(Gravity.CENTER);
+        //Use the dimens.xml to specify font sizes for different printer sizes
+        heading.setTextSize(getResources().getDimension(R.dimen.headingTextSize));
+
+        //Add text element to the receipt
+        receiptTree.addView(heading);
+
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Pizza", "100.00");
+        addLineItem(receiptTree, "Crackers", "10.00");
+        addLineItem(receiptTree, "Cards", "5.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+        addLineItem(receiptTree, "Bottled Water", "20.00");
+
+    }
+
+    private void addLineItem(LinearLayout tree, String itemName, String Price) {
+        //Use ViewGroups to have text elements side-by-side
+        RelativeLayout lineItem = new RelativeLayout(this);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        TextView item = new TextView(this);
+        item.setText(itemName);
+        item.setId(1);
+        item.setTextSize(getResources().getDimension(R.dimen.lineItem));
+        lineItem.addView(item);
+
+        TextView price = new TextView(this);
+        price.setText(Price);
+        item.setId(2);
+        price.setTextSize(getResources().getDimension(R.dimen.lineItemPrice));
+        price.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
+        lp.addRule(RelativeLayout.ALIGN_PARENT_END);
+        lp.addRule(RelativeLayout.RIGHT_OF, item.getId());
+        lp.addRule(RelativeLayout.ALIGN_BOTTOM, item.getId());
+        lineItem.addView(price, lp);
+
+        tree.addView(lineItem);
     }
 
     //Selects the default receipt printer, which can be set on the Clover device

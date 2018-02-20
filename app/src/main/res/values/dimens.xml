@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="headingTextSize">25sp</dimen>
+    <dimen name="lineItem">15sp</dimen>
+    <dimen name="lineItemPrice">13sp</dimen>
+</resources>
