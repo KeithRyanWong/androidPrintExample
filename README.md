@@ -1,6 +1,6 @@
 # Print Example using the Clover Android SDK
-## **Pre-reqs**
- - Be familiar with Android Studio projects
+## **Pre-requisites**
+ - Be able to connect to a Clover Device via Android SDK (PritnerConnector)
  - Know how to design [custom layouts][1]
 
 ## **General Overview**
@@ -16,5 +16,6 @@
 
 ## Future revisions
  - Target specific printers
+ - Spruce up print screen
 
  [1]: http://kb4dev.com/tutorial/android-layout/how-to-build-dynamic-layouts-in-android 

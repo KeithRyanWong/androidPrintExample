@@ -1,4 +1,4 @@
-package com.clover.keithwong.printexample;
+package com.example.keithwong.printexample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

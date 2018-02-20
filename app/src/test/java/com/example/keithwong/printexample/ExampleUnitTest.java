@@ -1,4 +1,4 @@
-package com.clover.keithwong.printexample;
+package com.example.keithwong.printexample;
 
 import org.junit.Test;
 
