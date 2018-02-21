@@ -24,6 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements ServiceConnector.OnServiceConnectedListener {
 
     protected View receipt;
+    protected ViewGroup vg;
     protected PrinterConnector connector;
 
     @Override
@@ -77,11 +78,14 @@ public class MainActivity extends AppCompatActivity implements ServiceConnector.
     }
 
     protected void createPrintLayout() {
-        ViewGroup vg = (ViewGroup) findViewById(R.id.printArea);
+        vg = (ViewGroup) findViewById(R.id.printArea);
         LayoutInflater inflater = LayoutInflater.from(this);
         inflater.inflate(R.layout.print_template, vg, true);
         receipt = findViewById(R.id.receipt);
         buildReceipt();
+
+        //Hides the view on screen
+        receipt.setVisibility(View.INVISIBLE);
     }
 
     protected void buildReceipt() {
